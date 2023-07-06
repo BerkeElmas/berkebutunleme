@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Grup">
+    <Key>
+      <PropertyRef Name="grupId" />
+    </Key>
+    <Property Name="grupId" Type="Int32" Nullable="false" />
+    <Property Name="grupAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="grupKisiId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kisiler" Relationship="Self.FK_Grup_ToKisiler" FromRole="Grup" ToRole="Kisiler" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_ToGrup" FromRole="Grup" ToRole="Kayit" />
+  </EntityType>
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="kayitId" />
+    </Key>
+    <Property Name="kayitId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kayitKisiId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kayitMesajId" Type="Int32" Nullable="false" />
+    <Property Name="kayitGrupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Grup" Relationship="Self.FK_Kayit_ToGrup" FromRole="Kayit" ToRole="Grup" />
+    <NavigationProperty Name="Kisiler" Relationship="Self.FK_Kayit_ToKisiler" FromRole="Kayit" ToRole="Kisiler" />
+    <NavigationProperty Name="Mesaj" Relationship="Self.FK_Kayit_ToMesaj" FromRole="Kayit" ToRole="Mesaj" />
+  </EntityType>
+  <EntityType Name="Kisiler">
+    <Key>
+      <PropertyRef Name="kisiId" />
+    </Key>
+    <Property Name="kisiId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kisiNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kisiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kisiMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kisiYas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Grup" Relationship="Self.FK_Grup_ToKisiler" FromRole="Kisiler" ToRole="Grup" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_ToKisiler" FromRole="Kisiler" ToRole="Kayit" />
+  </EntityType>
+  <EntityType Name="Mesaj">
+    <Key>
+      <PropertyRef Name="mesajId" />
+    </Key>
+    <Property Name="mesajId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mesajText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="bulkMesaj" Type="Int32" Nullable="false" />
+    <Property Name="grupId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kimdenId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="kimeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kayit" Relationship="Self.FK_Kayit_ToMesaj" FromRole="Mesaj" ToRole="Kayit" />
+  </EntityType>
+  <Association Name="FK_Grup_ToKisiler">
+    <End Role="Kisiler" Type="Self.Kisiler" Multiplicity="1" />
+    <End Role="Grup" Type="Self.Grup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kisiler">
+        <PropertyRef Name="kisiId" />
+      </Principal>
+      <Dependent Role="Grup">
+        <PropertyRef Name="grupKisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToGrup">
+    <End Role="Grup" Type="Self.Grup" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Grup">
+        <PropertyRef Name="grupId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitGrupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToKisiler">
+    <End Role="Kisiler" Type="Self.Kisiler" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kisiler">
+        <PropertyRef Name="kisiId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitKisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kayit_ToMesaj">
+    <End Role="Mesaj" Type="Self.Mesaj" Multiplicity="1" />
+    <End Role="Kayit" Type="Self.Kayit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mesaj">
+        <PropertyRef Name="mesajId" />
+      </Principal>
+      <Dependent Role="Kayit">
+        <PropertyRef Name="kayitMesajId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database1Entities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Grup" EntityType="Self.Grup" />
+    <EntitySet Name="Kayit" EntityType="Self.Kayit" />
+    <EntitySet Name="Kisiler" EntityType="Self.Kisiler" />
+    <EntitySet Name="Mesaj" EntityType="Self.Mesaj" />
+    <AssociationSet Name="FK_Grup_ToKisiler" Association="Self.FK_Grup_ToKisiler">
+      <End Role="Kisiler" EntitySet="Kisiler" />
+      <End Role="Grup" EntitySet="Grup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToGrup" Association="Self.FK_Kayit_ToGrup">
+      <End Role="Grup" EntitySet="Grup" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToKisiler" Association="Self.FK_Kayit_ToKisiler">
+      <End Role="Kisiler" EntitySet="Kisiler" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kayit_ToMesaj" Association="Self.FK_Kayit_ToMesaj">
+      <End Role="Mesaj" EntitySet="Mesaj" />
+      <End Role="Kayit" EntitySet="Kayit" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

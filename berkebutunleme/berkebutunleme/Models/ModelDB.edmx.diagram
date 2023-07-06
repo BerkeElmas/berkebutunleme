@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7043cff61ce4855a1ec1f42ecd748f4" Name="Diagram1" ZoomLevel="115">
+        <EntityTypeShape EntityType="Database1Model.Grup" Width="1.5" PointX="1.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Kayit" Width="1.5" PointX="5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Kisiler" Width="1.5" PointX="1" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.Mesaj" Width="1.5" PointX="6.125" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK_Kayit_ToGrup" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Kisiler_ToGrup" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Kayit_ToKisiler" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Database1Model.FK_Kayit_ToMesaj" ManuallyRouted="false" />
+        <AssociationConnector Association="Database1Model.FK_Mesaj_ToKisiler" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

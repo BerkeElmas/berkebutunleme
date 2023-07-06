@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities5">
+    <EntitySetMapping Name="Grup">
+      <EntityTypeMapping TypeName="Database1Model.Grup">
+        <MappingFragment StoreEntitySet="Grup">
+          <ScalarProperty Name="grupId" ColumnName="grupId" />
+          <ScalarProperty Name="grupAd" ColumnName="grupAd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kayit">
+      <EntityTypeMapping TypeName="Database1Model.Kayit">
+        <MappingFragment StoreEntitySet="Kayit">
+          <ScalarProperty Name="kayitId" ColumnName="kayitId" />
+          <ScalarProperty Name="kayitKisiId" ColumnName="kayitKisiId" />
+          <ScalarProperty Name="kayitMesajId" ColumnName="kayitMesajId" />
+          <ScalarProperty Name="kayitGrupId" ColumnName="kayitGrupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kisiler">
+      <EntityTypeMapping TypeName="Database1Model.Kisiler">
+        <MappingFragment StoreEntitySet="Kisiler">
+          <ScalarProperty Name="kisiId" ColumnName="kisiId" />
+          <ScalarProperty Name="kisiNo" ColumnName="kisiNo" />
+          <ScalarProperty Name="kisiAd" ColumnName="kisiAd" />
+          <ScalarProperty Name="kisiMail" ColumnName="kisiMail" />
+          <ScalarProperty Name="kisiYas" ColumnName="kisiYas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mesaj">
+      <EntityTypeMapping TypeName="Database1Model.Mesaj">
+        <MappingFragment StoreEntitySet="Mesaj">
+          <ScalarProperty Name="mesajId" ColumnName="mesajId" />
+          <ScalarProperty Name="mesajText" ColumnName="mesajText" />
+          <ScalarProperty Name="bulkMesaj" ColumnName="bulkMesaj" />
+          <ScalarProperty Name="grupId" ColumnName="grupId" />
+          <ScalarProperty Name="kimdenId" ColumnName="kimdenId" />
+          <ScalarProperty Name="kimeId" ColumnName="kimeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
